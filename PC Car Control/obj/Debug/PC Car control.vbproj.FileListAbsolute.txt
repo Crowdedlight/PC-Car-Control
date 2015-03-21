@@ -17,17 +17,3 @@ C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car control.vb
 C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car Control.exe
 C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car Control.xml
 C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car Control.pdb
-C:\Github\PC Car Control\PC Car Control\bin\Debug\PC Car Control.exe.config
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC Car Control.exe
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC Car Control.xml
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC Car Control.pdb
-C:\Github\PC Car Control\PC Car Control\bin\Debug\PC Car Control.exe.manifest
-C:\Github\PC Car Control\PC Car Control\bin\Debug\PC Car Control.application
-C:\Github\PC Car Control\PC Car Control\bin\Debug\PC Car Control.exe
-C:\Github\PC Car Control\PC Car Control\bin\Debug\PC Car Control.pdb
-C:\Github\PC Car Control\PC Car Control\bin\Debug\PC Car Control.xml
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC_Car_Control.CarControl.resources
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC_Car_Control.Resources.resources
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC Car control.vbproj.GenerateResource.Cache
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC Car Control.exe.manifest
-C:\Github\PC Car Control\PC Car Control\obj\Debug\PC Car Control.application

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0"?>
+<doc>
+<assembly>
+<name>
+PCCarControl
+</name>
+</assembly>
+<members>
+<member name="P:PC_Car_Control.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PC_Car_Control.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:PC_Car_Control.My.Resources.Resources.led_green">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:PC_Car_Control.My.Resources.Resources.led_red">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:PC_Car_Control.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:PC_Car_Control.CarControl.SetDefaults">
+ Method to initialize serial port
+ values to standard defaults
+
+</member><member name="M:PC_Car_Control.CarControl.LoadValues">
+ methos to load our serial
+ port option values
+
+</member><member name="M:PC_Car_Control.CarControl.SetControlState">
+ method to set the state of controls
+ when the form first loads
+
+</member><member name="T:PC_Car_Control.CommManager.TransmissionType">
+ enumeration to hold our transmission types
+
+</member><member name="T:PC_Car_Control.CommManager.MessageType">
+ enumeration to hold our message types
+
+</member><member name="P:PC_Car_Control.CommManager.StopBits">
+ property to hold the StopBits
+ of our manager class
+
+</member><member name="P:PC_Car_Control.CommManager.DataBits">
+ property to hold the DataBits
+ of our manager class
+
+</member><member name="P:PC_Car_Control.CommManager.PortName">
+ property to hold the PortName
+ of our manager class
+
+</member><member name="P:PC_Car_Control.CommManager.CurrentTransmissionType">
+ property to hold our TransmissionType
+ of our manager class
+
+</member><member name="P:PC_Car_Control.CommManager.DisplayWindow">
+ property to hold our display window
+ value
+
+</member><member name="P:PC_Car_Control.CommManager.Message">
+ Property to hold the message being sent
+ through the serial port
+
+</member><member name="P:PC_Car_Control.CommManager.Type">
+ Message to hold the transmission type
+
+</member><member name="P:PC_Car_Control.CommManager.BaudRate">
+	<summary>
+ Property to hold the BaudRate
+ of our manager class
+ </summary>
+</member><member name="M:PC_Car_Control.CommManager.#ctor(System.String,System.String,System.String,System.String,System.String,System.Windows.Forms.RichTextBox)">
+ Constructor to set the properties of our Manager Class
+ <param name="baud">Desired BaudRate</param>
+	<param name="par">Desired Parity</param>
+	<param name="sBits">Desired StopBits</param>
+	<param name="dBits">Desired DataBits</param>
+	<param name="name">Desired PortName</param>
+</member><member name="M:PC_Car_Control.CommManager.#ctor">
+ Comstructor to set the properties of our
+ serial port communicator to nothing
+
+</member><member name="M:PC_Car_Control.CommManager.HexToByte(System.String)">
+ method to convert hex string into a byte array
+ <param name="msg">string to convert</param>
+	<returns>a byte array</returns>
+</member><member name="M:PC_Car_Control.CommManager.ByteToHex(System.Byte[])">
+ method to convert a byte array into a hex string
+ <param name="comByte">byte array to convert</param>
+	<returns>a hex string</returns>
+</member><member name="M:PC_Car_Control.CommManager.DisplayData(PC_Car_Control.CommManager.MessageType,System.String)">
+ Method to display the data to and
+ from the port on the screen
+
+</member><member name="M:PC_Car_Control.CommManager.comPort_DataReceived(System.Object,System.IO.Ports.SerialDataReceivedEventArgs)">
+ method that will be called when theres data waiting in the buffer
+ <param name="sender"></param>
+	<param name="e"></param>
+</member>
+</members>
+</doc>

@@ -42,14 +42,14 @@
     </dependentAssembly>
   </dependency>
   <dependency>
-    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PC Car Control.exe" size="74240">
+    <dependentAssembly dependencyType="install" allowDelayedBinding="true" codebase="PC Car Control.exe" size="67584">
       <assemblyIdentity name="PC Car Control" version="1.0.0.0" language="neutral" processorArchitecture="msil" />
       <hash>
         <dsig:Transforms>
           <dsig:Transform Algorithm="urn:schemas-microsoft-com:HashTransforms.Identity" />
         </dsig:Transforms>
         <dsig:DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha256" />
-        <dsig:DigestValue>22OohqerO+v7dkoEf/F0U6Wndi8GnbjsEPwrY4WzrtM=</dsig:DigestValue>
+        <dsig:DigestValue>0qBUYvtgSsg9uOwK4sYAeZJxWdE+CZpiA5V7mq9sdPA=</dsig:DigestValue>
       </hash>
     </dependentAssembly>
   </dependency>
