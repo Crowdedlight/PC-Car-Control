@@ -6,7 +6,40 @@ PCCarControl
 </name>
 </assembly>
 <members>
-<member name="T:PC_Car_Control.CommManager.TransmissionType">
+<member name="P:PC_Car_Control.My.Resources.Resources.ResourceManager">
+	<summary>
+  Returns the cached ResourceManager instance used by this class.
+</summary>
+</member><member name="P:PC_Car_Control.My.Resources.Resources.Culture">
+	<summary>
+  Overrides the current thread's CurrentUICulture property for all
+  resource lookups using this strongly typed resource class.
+</summary>
+</member><member name="P:PC_Car_Control.My.Resources.Resources.led_green">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="P:PC_Car_Control.My.Resources.Resources.led_red">
+	<summary>
+  Looks up a localized resource of type System.Drawing.Bitmap.
+</summary>
+</member><member name="T:PC_Car_Control.My.Resources.Resources">
+	<summary>
+  A strongly-typed resource class, for looking up localized strings, etc.
+</summary>
+</member><member name="M:PC_Car_Control.CarControl.SetDefaults">
+ Method to initialize serial port
+ values to standard defaults
+
+</member><member name="M:PC_Car_Control.CarControl.LoadValues">
+ methos to load our serial
+ port option values
+
+</member><member name="M:PC_Car_Control.CarControl.SetControlState">
+ method to set the state of controls
+ when the form first loads
+
+</member><member name="T:PC_Car_Control.CommManager.TransmissionType">
  enumeration to hold our transmission types
 
 </member><member name="T:PC_Car_Control.CommManager.MessageType">
@@ -71,39 +104,6 @@ PCCarControl
  method that will be called when theres data waiting in the buffer
  <param name="sender"></param>
 	<param name="e"></param>
-</member><member name="P:PC_Car_Control.My.Resources.Resources.ResourceManager">
-	<summary>
-  Returns the cached ResourceManager instance used by this class.
-</summary>
-</member><member name="P:PC_Car_Control.My.Resources.Resources.Culture">
-	<summary>
-  Overrides the current thread's CurrentUICulture property for all
-  resource lookups using this strongly typed resource class.
-</summary>
-</member><member name="P:PC_Car_Control.My.Resources.Resources.led_green">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="P:PC_Car_Control.My.Resources.Resources.led_red">
-	<summary>
-  Looks up a localized resource of type System.Drawing.Bitmap.
-</summary>
-</member><member name="T:PC_Car_Control.My.Resources.Resources">
-	<summary>
-  A strongly-typed resource class, for looking up localized strings, etc.
-</summary>
-</member><member name="M:PC_Car_Control.CarControl.SetDefaults">
- Method to initialize serial port
- values to standard defaults
-
-</member><member name="M:PC_Car_Control.CarControl.LoadValues">
- methos to load our serial
- port option values
-
-</member><member name="M:PC_Car_Control.CarControl.SetControlState">
- method to set the state of controls
- when the form first loads
-
 </member>
 </members>
 </doc>
