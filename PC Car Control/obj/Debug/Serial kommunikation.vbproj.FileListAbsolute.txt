@@ -1,0 +1,14 @@
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\bin\Debug\Serial kommunikation.exe.config
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\obj\Debug\Serial_kommunikation.Resources.resources
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.vbproj.GenerateResource.Cache
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\bin\Debug\Serial kommunikation.exe
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\bin\Debug\Serial kommunikation.pdb
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\bin\Debug\Serial kommunikation.xml
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.exe
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.xml
+c:\users\frederik\documents\visual studio 2013\Projects\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.pdb
+C:\Users\Frederik\Documents\Visual Studio 2013\Projects\Serial kommunikation\Serial kommunikation\obj\Debug\Serial_kommunikation.CarControl.resources
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\bin\Debug\Serial kommunikation.exe.config
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.exe
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.xml
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.pdb

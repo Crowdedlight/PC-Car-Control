@@ -1,0 +1,19 @@
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\bin\Debug\Serial kommunikation.exe.config
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.exe
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.xml
+C:\Github\DreamTeamCar\Serial kommunikation\Serial kommunikation\obj\Debug\Serial kommunikation.pdb
+C:\Github\DreamTeamCar\PC Car Control\Serial kommunikation\bin\Debug\Serial kommunikation.exe.config
+C:\Github\DreamTeamCar\PC Car Control\Serial kommunikation\obj\Debug\Serial kommunikation.exe
+C:\Github\DreamTeamCar\PC Car Control\Serial kommunikation\obj\Debug\Serial kommunikation.xml
+C:\Github\DreamTeamCar\PC Car Control\Serial kommunikation\obj\Debug\Serial kommunikation.pdb
+C:\Github\DreamTeamCar\PC Car Control\Serial kommunikation\bin\Debug\PC Car Control.exe.config
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\bin\Debug\PC Car Control.exe.config
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\bin\Debug\PC Car Control.exe
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\bin\Debug\PC Car Control.pdb
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\bin\Debug\PC Car Control.xml
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC_Car_Control.CarControl.resources
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC_Car_Control.Resources.resources
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car control.vbproj.GenerateResource.Cache
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car Control.exe
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car Control.xml
+C:\Github\DreamTeamCar\PC Car Control\PC Car Control\obj\Debug\PC Car Control.pdb
