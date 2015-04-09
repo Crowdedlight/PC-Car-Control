@@ -32,12 +32,22 @@ Public Class CommManager
     Private _portName As String = String.Empty
     Private _transType As TransmissionType
     Private _displayWindow As RichTextBox
+    Private _Speedbar As ProgressBar
+    Private _ErrorLight As PictureBox
+    Private _LapCounter As TextBox
     Private _msg As String
     Private _type As MessageType
     'global manager variables
     Private MessageColor As Color() = {Color.Blue, Color.Green, Color.Black, Color.Orange, Color.Red}
     Private comPort As New SerialPort()
     Private write As Boolean = True
+
+    'Error variables
+    Private ErrormsgStr As String = String.Empty
+    'LapCount variables
+    Private LapStr As String = String.Empty
+    'motor speed
+    Private speedint As String = String.Empty
 #End Region
 
 #Region "Class Properties"
@@ -96,6 +106,36 @@ Public Class CommManager
         End Set
     End Property
 
+    ''' Property to hold Motorspeed progressbar value
+    Public Property SpeedBar() As ProgressBar
+        Get
+            Return _Speedbar
+        End Get
+        Set(ByVal value As ProgressBar)
+            _Speedbar = value
+        End Set
+    End Property
+
+    ''' Property to hold ErrorLight value
+    Public Property ErrorLight() As PictureBox
+        Get
+            Return _ErrorLight
+        End Get
+        Set(ByVal value As PictureBox)
+            _ErrorLight = value
+        End Set
+    End Property
+
+    ''' Property to hold Lapcounter label value
+    Public Property LapCounter() As TextBox
+        Get
+            Return _LapCounter
+        End Get
+        Set(ByVal text As TextBox)
+            _LapCounter = text
+        End Set
+    End Property
+
     ''' Property to hold the message being sent
     ''' through the serial port
     Public Property Message() As String
@@ -141,12 +181,15 @@ Public Class CommManager
     ''' <param name="sBits">Desired StopBits</param>
     ''' <param name="dBits">Desired DataBits</param>
     ''' <param name="name">Desired PortName</param>
-    Public Sub New(ByVal baud As String, ByVal par As String, ByVal sBits As String, ByVal dBits As String, ByVal name As String, ByVal rtb As RichTextBox)
+    Public Sub New(ByVal baud As String, ByVal par As String, ByVal sBits As String, ByVal dBits As String, ByVal name As String, ByVal rtb As RichTextBox, ByVal spdbar As ProgressBar, ByVal lapctn As TextBox, ByVal ErrBox As PictureBox)
         _baudRate = baud
         _stopBits = sBits
         _dataBits = dBits
         _portName = name
         _displayWindow = rtb
+        _Speedbar = spdbar
+        _ErrorLight = ErrBox
+        _LapCounter = lapctn
         'now add an event handler
         AddHandler comPort.DataReceived, AddressOf comPort_DataReceived
     End Sub
@@ -159,6 +202,9 @@ Public Class CommManager
         _dataBits = String.Empty
         _portName = "COM1"
         _displayWindow = Nothing
+        _Speedbar = Nothing
+        _ErrorLight = Nothing
+        _LapCounter = Nothing
         'add event handler
         AddHandler comPort.DataReceived, AddressOf comPort_DataReceived
     End Sub
@@ -202,7 +248,7 @@ Public Class CommManager
                     _msg = ex.Message + "" + Environment.NewLine + ""
                     DisplayData(_type, _msg)
                 Finally
-                    _displaywindow.SelectAll()
+                    _displayWindow.SelectAll()
                 End Try
                 Exit Select
             Case Else
@@ -280,7 +326,7 @@ Public Class CommManager
     ''' from the port on the screen
     <STAThread()> _
     Private Sub DisplayData(ByVal type As MessageType, ByVal msg As String)
-        _displaywindow.Invoke(New EventHandler(AddressOf DoDisplay))
+        _displayWindow.Invoke(New EventHandler(AddressOf DoDisplay))
     End Sub
 #End Region
 
@@ -379,12 +425,25 @@ Public Class CommManager
 
                     If errorMsg = incMsg Then
                         'Send to funtion in Car Control that updates error lights
-                        CarControl.ErrorLights("Error")
+                        ErrorLightControl("Error")
                     End If
 
                     'Intercept motor speed change and update speed bar
                     ' If incMsg Then
-                    ' Make string split. if first two hex = 55 10 convert last hex and update speed bar
+                    ' Make string split. if first two hex = BB 10 convert last hex and update speed bar
+                    ' BB 10 80 ==> .length -4, -3, -2
+                    Dim RecievedMsgs() As String = Split(incMsg)
+                    If RecievedMsgs(RecievedMsgs.Length - 3) = "10" Then
+                        Dim speedMsg As String = RecievedMsgs(RecievedMsgs.Length - 2)
+                        MotorBarControl(speedMsg)
+                    End If
+
+                    'Check for lap counter update. Send to correct function 
+                    If RecievedMsgs(RecievedMsgs.Length - 3) = "12" Then
+                        Dim LapMsg As String = RecievedMsgs(RecievedMsgs.Length - 2)
+                        LapCounterControl(LapMsg)
+                    End If
+
                     Exit Select
                 Case Else
                     'read data waiting in the buffer
@@ -399,9 +458,65 @@ Public Class CommManager
     End Sub
 #End Region
 
-
 #Region "MotorBar Control"
+    <STAThread()> _
     Public Sub MotorBarControl(ByVal speed As String)
+        speedint = Convert.ToInt32(speed, 16) / 2.55
+        _Speedbar.BeginInvoke(New EventHandler(AddressOf MotorSpeedSet))
+    End Sub
+
+    Public Sub MotorSpeedSet(ByVal speed As Object, ByVal e As EventArgs)
+        _Speedbar.Value = speedint
+    End Sub
+#End Region
+
+#Region "Error Lights control"
+    <STAThread()> _
+    Public Sub ErrorLightControl(ByVal errorMsg As String)
+        ErrormsgStr = errorMsg
+        _ErrorLight.BeginInvoke(New EventHandler(AddressOf ErrorLightSet))
+    End Sub
+
+    Public Sub ErrorLightSet(ByVal errormsg As Object, ByVal e As EventArgs)
+        If ErrormsgStr = "Error" And CarControl.ErrorBlink.Enabled = True Then
+            _ErrorLight.Image = My.Resources.led_red
+
+        ElseIf ErrormsgStr = "OK" Then
+            _ErrorLight.Image = My.Resources.led_green
+        End If
+
+        If ErrormsgStr = "Error" And CarControl.ErrorBlink.Enabled = False Then
+            CarControl.ErrorBlink.Enabled = True
+            CarControl.ErrorBlink.Start()
+        End If
+
+    End Sub
+
+#End Region
+
+#Region "Lap Counter Control"
+    <STAThread()> _
+    Public Sub LapCounterControl(ByVal lapCount As String)
+        LapStr = Convert.ToInt32(lapCount, 16)
+        _LapCounter.BeginInvoke(New EventHandler(AddressOf LapCounterSet))
+    End Sub
+
+    Public Sub LapCounterSet(ByVal lapcount As Object, ByVal e As EventArgs)
+        _LapCounter.Text = LapStr
+    End Sub
+#End Region
+
+#Region "Save Log"
+    Public Sub SaveLog()
+        If _displayWindow Is Nothing Then
+            MsgBox("No text to save", 1, "ERROR")
+        Else
+            CarControl.SaveLogDialog.Filter = "TXT Files (*.txt*)|*.txt"
+            If CarControl.SaveLogDialog.ShowDialog = Windows.Forms.DialogResult.OK Then
+                My.Computer.FileSystem.WriteAllText _
+                (CarControl.SaveLogDialog.FileName, _displayWindow.Text, False)
+            End If
+        End If
 
     End Sub
 #End Region

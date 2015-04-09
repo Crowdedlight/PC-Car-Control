@@ -22,6 +22,7 @@ Partial Class CarControl
     'Do not modify it using the code editor.
     <System.Diagnostics.DebuggerStepThrough()> _
     Private Sub InitializeComponent()
+        Me.components = New System.ComponentModel.Container()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(CarControl))
         Me.cmdClose = New System.Windows.Forms.Button()
         Me.groupBox3 = New System.Windows.Forms.GroupBox()
@@ -43,25 +44,29 @@ Partial Class CarControl
         Me.cmdOpen = New System.Windows.Forms.Button()
         Me.GroupBox4 = New System.Windows.Forms.GroupBox()
         Me.SpeedSlider = New System.Windows.Forms.NumericUpDown()
-        Me.SpeedBar = New System.Windows.Forms.ProgressBar()
+        Me.SpeedDisplay = New System.Windows.Forms.ProgressBar()
         Me.SendSpeed = New System.Windows.Forms.Button()
         Me.speed50 = New System.Windows.Forms.Button()
         Me.speed75 = New System.Windows.Forms.Button()
         Me.stopall = New System.Windows.Forms.Button()
         Me.speed80 = New System.Windows.Forms.Button()
         Me.GroupBox5 = New System.Windows.Forms.GroupBox()
-        Me.PicLED = New System.Windows.Forms.PictureBox()
         Me.btnLapCount = New System.Windows.Forms.Button()
         Me.GroupBox6 = New System.Windows.Forms.GroupBox()
-        Me.TextBox1 = New System.Windows.Forms.TextBox()
+        Me.LapDisplay = New System.Windows.Forms.TextBox()
+        Me.btnSavelog = New System.Windows.Forms.Button()
+        Me.btnTestMotor = New System.Windows.Forms.Button()
+        Me.SaveLogDialog = New System.Windows.Forms.SaveFileDialog()
+        Me.ErrorBlink = New System.Windows.Forms.Timer(Me.components)
+        Me.ErrLight = New System.Windows.Forms.PictureBox()
         Me.groupBox3.SuspendLayout()
         Me.GroupBox1.SuspendLayout()
         Me.groupBox2.SuspendLayout()
         Me.GroupBox4.SuspendLayout()
         CType(Me.SpeedSlider, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox5.SuspendLayout()
-        CType(Me.PicLED, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.GroupBox6.SuspendLayout()
+        CType(Me.ErrLight, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
         'cmdClose
@@ -240,7 +245,7 @@ Partial Class CarControl
         'GroupBox4
         '
         Me.GroupBox4.Controls.Add(Me.SpeedSlider)
-        Me.GroupBox4.Controls.Add(Me.SpeedBar)
+        Me.GroupBox4.Controls.Add(Me.SpeedDisplay)
         Me.GroupBox4.Controls.Add(Me.SendSpeed)
         Me.GroupBox4.Controls.Add(Me.speed50)
         Me.GroupBox4.Controls.Add(Me.speed75)
@@ -261,14 +266,14 @@ Partial Class CarControl
         Me.SpeedSlider.Size = New System.Drawing.Size(44, 20)
         Me.SpeedSlider.TabIndex = 16
         '
-        'SpeedBar
+        'SpeedDisplay
         '
-        Me.SpeedBar.Location = New System.Drawing.Point(6, 19)
-        Me.SpeedBar.Name = "SpeedBar"
-        Me.SpeedBar.Size = New System.Drawing.Size(180, 24)
-        Me.SpeedBar.Step = 1
-        Me.SpeedBar.Style = System.Windows.Forms.ProgressBarStyle.Continuous
-        Me.SpeedBar.TabIndex = 15
+        Me.SpeedDisplay.Location = New System.Drawing.Point(6, 19)
+        Me.SpeedDisplay.Name = "SpeedDisplay"
+        Me.SpeedDisplay.Size = New System.Drawing.Size(180, 24)
+        Me.SpeedDisplay.Step = 1
+        Me.SpeedDisplay.Style = System.Windows.Forms.ProgressBarStyle.Continuous
+        Me.SpeedDisplay.TabIndex = 15
         '
         'SendSpeed
         '
@@ -320,21 +325,13 @@ Partial Class CarControl
         '
         'GroupBox5
         '
-        Me.GroupBox5.Controls.Add(Me.PicLED)
+        Me.GroupBox5.Controls.Add(Me.ErrLight)
         Me.GroupBox5.Location = New System.Drawing.Point(657, 13)
         Me.GroupBox5.Name = "GroupBox5"
         Me.GroupBox5.Size = New System.Drawing.Size(98, 95)
         Me.GroupBox5.TabIndex = 14
         Me.GroupBox5.TabStop = False
         Me.GroupBox5.Text = "Error Response"
-        '
-        'PicLED
-        '
-        Me.PicLED.Location = New System.Drawing.Point(26, 28)
-        Me.PicLED.Name = "PicLED"
-        Me.PicLED.Size = New System.Drawing.Size(53, 50)
-        Me.PicLED.TabIndex = 0
-        Me.PicLED.TabStop = False
         '
         'btnLapCount
         '
@@ -347,7 +344,7 @@ Partial Class CarControl
         '
         'GroupBox6
         '
-        Me.GroupBox6.Controls.Add(Me.TextBox1)
+        Me.GroupBox6.Controls.Add(Me.LapDisplay)
         Me.GroupBox6.Controls.Add(Me.btnLapCount)
         Me.GroupBox6.Location = New System.Drawing.Point(659, 114)
         Me.GroupBox6.Name = "GroupBox6"
@@ -356,20 +353,53 @@ Partial Class CarControl
         Me.GroupBox6.TabStop = False
         Me.GroupBox6.Text = "Lap Counter"
         '
-        'TextBox1
+        'LapDisplay
         '
-        Me.TextBox1.Location = New System.Drawing.Point(6, 37)
-        Me.TextBox1.Name = "TextBox1"
-        Me.TextBox1.ReadOnly = True
-        Me.TextBox1.Size = New System.Drawing.Size(84, 20)
-        Me.TextBox1.TabIndex = 1
-        Me.TextBox1.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        Me.LapDisplay.Location = New System.Drawing.Point(6, 37)
+        Me.LapDisplay.Name = "LapDisplay"
+        Me.LapDisplay.ReadOnly = True
+        Me.LapDisplay.Size = New System.Drawing.Size(84, 20)
+        Me.LapDisplay.TabIndex = 1
+        Me.LapDisplay.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
+        '
+        'btnSavelog
+        '
+        Me.btnSavelog.Location = New System.Drawing.Point(665, 300)
+        Me.btnSavelog.Name = "btnSavelog"
+        Me.btnSavelog.Size = New System.Drawing.Size(84, 29)
+        Me.btnSavelog.TabIndex = 15
+        Me.btnSavelog.Text = "Save Log"
+        Me.btnSavelog.UseVisualStyleBackColor = True
+        '
+        'btnTestMotor
+        '
+        Me.btnTestMotor.Location = New System.Drawing.Point(501, 286)
+        Me.btnTestMotor.Name = "btnTestMotor"
+        Me.btnTestMotor.Size = New System.Drawing.Size(85, 57)
+        Me.btnTestMotor.TabIndex = 16
+        Me.btnTestMotor.Text = "TEST Motor speed"
+        Me.btnTestMotor.UseVisualStyleBackColor = True
+        Me.btnTestMotor.Visible = False
+        '
+        'ErrorBlink
+        '
+        Me.ErrorBlink.Interval = 500
+        '
+        'ErrLight
+        '
+        Me.ErrLight.Location = New System.Drawing.Point(26, 28)
+        Me.ErrLight.Name = "ErrLight"
+        Me.ErrLight.Size = New System.Drawing.Size(53, 50)
+        Me.ErrLight.TabIndex = 0
+        Me.ErrLight.TabStop = False
         '
         'CarControl
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(770, 339)
+        Me.Controls.Add(Me.btnTestMotor)
+        Me.Controls.Add(Me.btnSavelog)
         Me.Controls.Add(Me.cmdSend)
         Me.Controls.Add(Me.GroupBox6)
         Me.Controls.Add(Me.GroupBox5)
@@ -391,9 +421,9 @@ Partial Class CarControl
         Me.GroupBox4.ResumeLayout(False)
         CType(Me.SpeedSlider, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox5.ResumeLayout(False)
-        CType(Me.PicLED, System.ComponentModel.ISupportInitialize).EndInit()
         Me.GroupBox6.ResumeLayout(False)
         Me.GroupBox6.PerformLayout()
+        CType(Me.ErrLight, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
 
     End Sub
@@ -421,11 +451,15 @@ Partial Class CarControl
     Friend WithEvents speed75 As System.Windows.Forms.Button
     Friend WithEvents stopall As System.Windows.Forms.Button
     Friend WithEvents SpeedSlider As System.Windows.Forms.NumericUpDown
-    Friend WithEvents SpeedBar As System.Windows.Forms.ProgressBar
+    Friend WithEvents SpeedDisplay As System.Windows.Forms.ProgressBar
     Friend WithEvents SendSpeed As System.Windows.Forms.Button
     Private WithEvents GroupBox5 As System.Windows.Forms.GroupBox
-    Friend WithEvents PicLED As System.Windows.Forms.PictureBox
+    Friend WithEvents ErrLight As System.Windows.Forms.PictureBox
     Friend WithEvents btnLapCount As System.Windows.Forms.Button
     Private WithEvents GroupBox6 As System.Windows.Forms.GroupBox
-    Friend WithEvents TextBox1 As System.Windows.Forms.TextBox
+    Friend WithEvents LapDisplay As System.Windows.Forms.TextBox
+    Friend WithEvents btnSavelog As System.Windows.Forms.Button
+    Friend WithEvents btnTestMotor As System.Windows.Forms.Button
+    Friend WithEvents SaveLogDialog As System.Windows.Forms.SaveFileDialog
+    Friend WithEvents ErrorBlink As System.Windows.Forms.Timer
 End Class
